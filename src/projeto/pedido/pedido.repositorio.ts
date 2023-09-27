@@ -61,18 +61,18 @@ class PedidoRepositorio {
 
     public async salvar(pedido: Pedido) {
         try {
-            if (pedido.cliente) {
-              pedido.cliente = await clienteRepositorio.salvar(pedido.cliente)
+            if (pedido.customer) {
+              pedido.customer = await clienteRepositorio.salvar(pedido.customer)
             }
       
-            if (pedido.itens.length) {
+            if (pedido.items.length) {
 
-              const itens = Object.assign([], pedido.itens)
-              pedido.itens = []
+              const itens = Object.assign([], pedido.items)
+              pedido.items = []
               
               for (const item of itens) {
                 const itemSalvo = await ItemRepositorio.salvar(item)
-                pedido.itens.push(itemSalvo)
+                pedido.items.push(itemSalvo)
               }
             }
       

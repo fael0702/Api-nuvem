@@ -8,8 +8,8 @@ export class Cliente {
     id: number
 
     @Column({ type: 'text'})
-    nome: string
+    name: string
 
-    @OneToMany(type => Pedido, pedido => pedido.cliente)
+    @OneToMany(type => Pedido, pedido => pedido.customer)
     pedidos: Pedido[]
 }

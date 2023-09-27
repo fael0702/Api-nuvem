@@ -11,8 +11,8 @@ export class Sku {
     id: string
 
     @Column('decimal', { precision: 10, scale: 2 })
-    valor: number
+    value: number
 
     @OneToMany(type => Item, item => item.sku)
-    itens: Item
+    items: Item
 }

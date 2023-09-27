@@ -8,7 +8,7 @@ class PedidoService {
             const pedidos: Pedido[] = await pedidoRepositorio.buscarPedidoUuid(uuid)
 
             for (const pedido of pedidos) {
-                pedido['total_pedido'] = pedido.itens.reduce((acc, item) => acc + (item.sku.valor * item.quantidade), 0)
+                pedido['total_pedido'] = pedido.items.reduce((acc, item) => acc + (item.sku.value * item.quantity), 0)
             }
 
             return pedidos
@@ -22,7 +22,7 @@ class PedidoService {
             const pedidos: Pedido[] = await pedidoRepositorio.buscarPedidoCliente(uuid)
 
             for (const pedido of pedidos) {
-                pedido['total_pedido'] = pedido.itens.reduce((acc, item) => acc + (item.sku.valor * item.quantidade), 0)
+                pedido['total_pedido'] = pedido.items.reduce((acc, item) => acc + (item.sku.value * item.quantity), 0)
             }
 
             return pedidos
@@ -36,7 +36,7 @@ class PedidoService {
             const pedidos: Pedido[] = await pedidoRepositorio.buscarPedidoSku(uuid)
 
             for (const pedido of pedidos) {
-                pedido['total_pedido'] = pedido.itens.reduce((acc, item) => acc + (item.sku.valor * item.quantidade), 0)
+                pedido['total_pedido'] = pedido.items.reduce((acc, item) => acc + (item.sku.value * item.quantity), 0)
             }
 
             return pedidos

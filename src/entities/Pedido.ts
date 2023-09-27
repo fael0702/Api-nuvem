@@ -15,12 +15,12 @@ export class Pedido {
     created_at: Date
 
     @Column({ type: 'text'})
-    tipo: string
+    type: string
 
     @ManyToOne(type => Cliente, cliente => cliente.pedidos)
     @JoinColumn({name: 'cliente_id'})
-    cliente: Cliente
+    customer: Cliente
 
     @OneToMany(type => Item, item => item.pedido)
-    itens: Item[]
+    items: Item[]
 }

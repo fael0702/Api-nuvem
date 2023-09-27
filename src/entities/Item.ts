@@ -15,13 +15,13 @@ export class Item {
     sub_categoria: string
 
     @Column({ type: 'integer'})
-    quantidade: number 
+    quantity: number 
 
-    @ManyToOne(type => Sku, sku => sku.itens)
+    @ManyToOne(type => Sku, sku => sku.items)
     @JoinColumn({name: 'sku_id'})
     sku: Sku
 
-    @ManyToOne(type => Pedido, pedido => pedido.itens)
+    @ManyToOne(type => Pedido, pedido => pedido.items)
     @JoinColumn({name: 'pedido_id'})
     pedido: Pedido
 }
