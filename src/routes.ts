@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { PedidoController } from "./controllers/PedidoController";
-import { ClienteController } from "./controllers/ClienteController";
+import pedidoController from "./projeto/pedido/pedido.controller";
 
 const routes = Router()
 
-routes.post('/pedido', new PedidoController().create)
-routes.get('/buscar-pedido', new PedidoController().buscarPedido)
-// routes.post('/cliente', new ClienteController().create)
+
+routes.get('/pedido/uuid/:uuid', pedidoController.buscarPedidoUuid)
+routes.get('/pedido/cliente/:id_cliente', pedidoController.buscarPedidoCliente)
+routes.get('/pedido/sku/:id_sku', pedidoController.buscarPedidoSku)
+
 
 export default routes

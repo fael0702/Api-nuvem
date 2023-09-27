@@ -1,12 +1,15 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Cliente } from "./Cliente";
 import { Item } from "./Item";
 
 @Entity('pedido')
 export class Pedido {
 
-    @PrimaryColumn()
-    id: string
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column()
+    uuid: string
 
     @Column({ type: 'timestamp' })
     created_at: Date
@@ -14,10 +17,10 @@ export class Pedido {
     @Column({ type: 'text'})
     tipo: string
 
-    @ManyToOne(() => Cliente, cliente => cliente.pedidos)
+    @ManyToOne(type => Cliente, cliente => cliente.pedidos)
     @JoinColumn({name: 'cliente_id'})
     cliente: Cliente
 
-    @OneToMany(() => Item, (item) => item.pedido)
+    @OneToMany(type => Item, item => item.pedido)
     itens: Item[]
 }

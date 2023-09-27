@@ -1,11 +1,11 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Sku } from "./Sku";
 import { Pedido } from "./Pedido";
 
 @Entity('item')
 export class Item {
     
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column({ type: 'text'})
@@ -17,11 +17,11 @@ export class Item {
     @Column({ type: 'integer'})
     quantidade: number 
 
-    @OneToOne(type => Sku, itens => Item)
+    @ManyToOne(type => Sku, sku => sku.itens)
     @JoinColumn({name: 'sku_id'})
     sku: Sku
 
-    @ManyToOne(() => Pedido, pedido => pedido.itens)
+    @ManyToOne(type => Pedido, pedido => pedido.itens)
     @JoinColumn({name: 'pedido_id'})
     pedido: Pedido
 }

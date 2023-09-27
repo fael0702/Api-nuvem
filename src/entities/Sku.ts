@@ -1,15 +1,18 @@
-import { Code, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Item } from "./Item";
 
 @Entity('sku')
 export class Sku {
 
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
+    codigo: number
+
+    @Column()
     id: string
 
-    @Column({ type: 'money'})
+    @Column('decimal', { precision: 10, scale: 2 })
     valor: number
-    
-    @OneToOne(type => Item, sku => Sku)
+
+    @OneToMany(type => Item, item => item.sku)
     itens: Item
 }
